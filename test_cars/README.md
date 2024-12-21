@@ -6,7 +6,7 @@
 
 1. Клонируйте репозиторий:
     ```
-    git clone https://github.com/ваш-репозиторий/testFarp.git
+    git clone https://github.com/mkcomru/testFarpostBack
     ```
 
 2. Перейдите в директорию проекта:
