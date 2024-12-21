@@ -1,0 +1,36 @@
+<!-- cars/templates/cars/car_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали автомобиля</title>
+</head>
+<body>
+    <h1>{{ car.make }} {{ car.model }} ({{ car.year }})</h1>
+    <p>{{ car.description }}</p>
+
+    <h2>Комментарии</h2>
+    <ul>
+        {% for comment in car.comments.all %}
+            <li>
+                {{ comment.content }} - {{ comment.author }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Добавить комментарий</h3>
+    <form action="{% url 'add-comment' car.id %}" method="post">
+        {% csrf_token %}
+        <textarea name="content" rows="4" cols="50" required></textarea><br>
+        <button type="submit">Добавить комментарий</button>
+    </form>
+
+    {% if car.owner == request.user %}
+        <form action="{% url 'car-delete' car.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Удалить автомобиль</button>
+        </form>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!-- cars/templates/cars/car_form.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать автомобиль</title>
+    <link rel="stylesheet" href="{% static 'cars/styles.css' %}">
+</head>
+<body>
+    <h1>Создать новый автомобиль</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+    <a href="{% url 'car-list' %}">Назад к списку</a>
+</body>
+</html>
